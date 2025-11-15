@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Primary Meta Tags -->
+<title>AIrrenanstalt – Akademie für AI-Experimente und kontrollierten Wahnsinn</title>
+<meta name="title" content="AIrrenanstalt – Akademie für AI-Experimente und kontrollierten Wahnsinn">
+<meta name="description" content="KI ohne Hype: Strategie, Prototypen, Rollout. Radikal messbar, angenehm ironisch. Jetzt eintreten.">
+<meta name="keywords" content="KI Beratung, AI Strategie, Künstliche Intelligenz, AI Prototypen, Prozessautomatisierung, n8n, Make, AI Integration, AI Workshop, AI Readiness, Machine Learning, Prompt Engineering, AI Governance, AI Operations, Digitale Transformation, AI Use Cases, KI Implementierung, AI Training, ChatGPT Enterprise, Claude AI, LLM Integration">
+<meta name="author" content="AIrrenanstalt">
+<meta name="robots" content="index, follow">
+<meta name="language" content="German">
+<meta name="revisit-after" content="7 days">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://airrenanstalt.de">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://airrenanstalt.de">
+<meta property="og:title" content="AIrrenanstalt – Akademie für AI-Experimente und kontrollierten Wahnsinn">
+<meta property="og:description" content="KI ohne Hype: Strategie, Prototypen, Rollout. Radikal messbar, angenehm ironisch. Zeit sparen: −47% bis −88%. Kosten senken: −19% bis −42%.">
+<meta property="og:image" content="https://airrenanstalt.de/og-image.jpg">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="AIrrenanstalt">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://airrenanstalt.de">
+<meta property="twitter:title" content="AIrrenanstalt – Akademie für AI-Experimente und kontrollierten Wahnsinn">
+<meta property="twitter:description" content="KI ohne Hype: Strategie, Prototypen, Rollout. Radikal messbar, angenehm ironisch.">
+<meta property="twitter:image" content="https://airrenanstalt.de/twitter-image.jpg">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- Structured Data / Schema.org for Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "AIrrenanstalt",
+  "alternateName": "Akademie für AI-Experimente und kontrollierten Wahnsinn",
+  "url": "https://airrenanstalt.de",
+  "logo": "https://airrenanstalt.de/logo.png",
+  "description": "KI ohne Hype: Strategie, Prototypen, Rollout. Radikal messbar, angenehm ironisch.",
+  "email": "kontakt@airrenanstalt.de",
+  "areaServed": "DE",
+  "serviceType": [
+    "AI Beratung",
+    "KI Strategie",
+    "Prozessautomatisierung",
+    "AI Prototypen",
+    "AI Training"
+  ],
+  "priceRange": "€€€",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "DE"
+  },
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "AI-Readiness Sprint",
+      "description": "Diagnose, Chancen, Roadmap. Schmerzfrei, fast.",
+      "price": "4500",
+      "priceCurrency": "EUR"
+    },
+    {
+      "@type": "Offer",
+      "name": "Triple-Speed-Workshop (TSL)",
+      "description": "Ideen, Prioritäten, Fokus. Drei Geschwindigkeiten, ein Ergebnis.",
+      "price": "4500",
+      "priceCurrency": "EUR"
+    },
+    {
+      "@type": "Offer",
+      "name": "Prototype-Lab",
+      "description": "1–3 Prototypen, die laufen. Oder spektakulär scheitern.",
+      "price": "12000",
+      "priceCurrency": "EUR"
+    }
+  ]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --neon-cyan: #00ffff;
+        --neon-magenta: #ff00ff;
+        --neon-yellow: #ffff00;
+        --neon-green: #00ff41;
+        --deep-purple: #1a0033;
+        --dark-bg: #0a0015;
+        --electric-blue: #0066ff;
+    }
+
+    body {
+        font-family: 'Space Mono', monospace;
+        background-color: var(--dark-bg);
+        color: var(--neon-cyan);
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    .glitch {
+        position: relative;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .glitch::before,
+    .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .glitch::before {
+        left: 2px;
+        text-shadow: -2px 0 var(--neon-magenta);
+        clip: rect(24px, 550px, 90px, 0);
+        animation: glitch-anim 3s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+        left: -2px;
+        text-shadow: -2px 0 var(--neon-cyan);
+        clip: rect(85px, 550px, 140px, 0);
+        animation: glitch-anim 2.5s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim {
+        0% { clip: rect(31px, 9999px, 94px, 0); }
+        20% { clip: rect(60px, 9999px, 7px, 0); }
+        40% { clip: rect(45px, 9999px, 78px, 0); }
+        60% { clip: rect(12px, 9999px, 96px, 0); }
+        80% { clip: rect(89px, 9999px, 33px, 0); }
+        100% { clip: rect(71px, 9999px, 51px, 0); }
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    header {
+        text-align: center;
+        padding: 80px 20px 60px;
+        background: linear-gradient(135deg, var(--deep-purple) 0%, var(--dark-bg) 100%);
+        border-bottom: 3px solid var(--neon-cyan);
+        position: relative;
+        overflow: hidden;
+    }
+
+    header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 255, 0.03) 2px,
+            rgba(0, 255, 255, 0.03) 4px
+        );
+        pointer-events: none;
+    }
+
+    h1 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 5rem;
+        font-weight: 900;
+        letter-spacing: 8px;
+        margin-bottom: 20px;
+        text-shadow: 
+            0 0 10px var(--neon-cyan),
+            0 0 20px var(--neon-cyan),
+            0 0 40px var(--neon-cyan),
+            0 0 80px var(--electric-blue);
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    h1 .ai-prefix {
+        color: var(--neon-magenta);
+        text-shadow: 
+            0 0 10px var(--neon-magenta),
+            0 0 20px var(--neon-magenta),
+            0 0 40px var(--neon-magenta),
+            0 0 80px var(--neon-magenta);
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.8; }
+    }
+
+    h2 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.5rem;
+        color: var(--neon-magenta);
+        font-weight: 400;
+        letter-spacing: 3px;
+        margin-bottom: 40px;
+    }
+
+    .teaser {
+        font-size: 1.2rem;
+        color: var(--neon-yellow);
+        margin: 30px 0;
+        text-shadow: 0 0 10px var(--neon-yellow);
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 40px;
+    }
+
+    .btn {
+        font-family: 'Orbitron', sans-serif;
+        padding: 18px 40px;
+        font-size: 1.1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700;
+        border: 3px solid;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background: var(--neon-cyan);
+        color: var(--dark-bg);
+        border-color: var(--neon-cyan);
+        box-shadow: 0 0 20px var(--neon-cyan);
+    }
+
+    .btn-primary:hover {
+        background: transparent;
+        color: var(--neon-cyan);
+        box-shadow: 0 0 40px var(--neon-cyan);
+    }
+
+    .btn-secondary {
+        background: transparent;
+        color: var(--neon-magenta);
+        border-color: var(--neon-magenta);
+        box-shadow: 0 0 20px var(--neon-magenta);
+    }
+
+    .btn-secondary:hover {
+        background: var(--neon-magenta);
+        color: var(--dark-bg);
+        box-shadow: 0 0 40px var(--neon-magenta);
+    }
+
+    section {
+        padding: 80px 20px;
+        border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+    }
+
+    section:nth-child(even) {
+        background: rgba(26, 0, 51, 0.3);
+    }
+
+    h3 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.5rem;
+        color: var(--neon-green);
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        text-shadow: 0 0 10px var(--neon-green);
+    }
+
+    .section-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--neon-cyan);
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    li {
+        padding: 15px 0 15px 40px;
+        position: relative;
+        color: var(--neon-cyan);
+    }
+
+    li::before {
+        content: '▸';
+        position: absolute;
+        left: 10px;
+        color: var(--neon-magenta);
+        font-size: 1.5rem;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .card {
+        background: linear-gradient(135deg, rgba(80, 80, 100, 0.95) 0%, rgba(50, 50, 70, 0.95) 100%);
+        border: 3px solid var(--electric-blue);
+        padding: 30px;
+        border-radius: 10px;
+        transition: all 0.3s;
+        box-shadow: 
+            0 5px 25px rgba(0, 0, 0, 0.6),
+            0 0 30px rgba(0, 102, 255, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 
+            0 15px 50px rgba(0, 255, 255, 0.6),
+            0 0 40px rgba(0, 255, 255, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        border-color: var(--neon-cyan);
+        background: linear-gradient(135deg, rgba(90, 90, 110, 0.95) 0%, rgba(60, 60, 80, 0.95) 100%);
+    }
+
+    .card h4 {
+        font-family: 'Orbitron', sans-serif;
+        color: var(--neon-yellow);
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        text-shadow: 0 0 5px var(--neon-yellow);
+    }
+
+    .stats {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 40px;
+        margin: 50px 0;
+    }
+
+    .stat-item {
+        text-align: center;
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .stat-number {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 3rem;
+        color: var(--neon-magenta);
+        font-weight: 900;
+        text-shadow: 0 0 20px var(--neon-magenta);
+    }
+
+    .stat-label {
+        color: var(--neon-cyan);
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+
+    .separator {
+        text-align: center;
+        color: var(--neon-magenta);
+        font-size: 2rem;
+        margin: 40px 0;
+    }
+
+    .price-tag {
+        display: inline-block;
+        background: var(--neon-yellow);
+        color: var(--dark-bg);
+        padding: 8px 16px;
+        border-radius: 5px;
+        font-weight: 700;
+        margin-top: 15px;
+        box-shadow: 0 0 15px var(--neon-yellow);
+    }
+
+    .faq-item {
+        margin: 30px 0;
+        padding: 25px;
+        background: linear-gradient(135deg, rgba(75, 75, 95, 0.95) 0%, rgba(55, 55, 75, 0.95) 100%);
+        border-left: 5px solid var(--neon-magenta);
+        border-radius: 8px;
+        box-shadow: 
+            0 5px 20px rgba(0, 0, 0, 0.5),
+            0 0 20px rgba(255, 0, 255, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .faq-question {
+        font-family: 'Orbitron', sans-serif;
+        color: var(--neon-yellow);
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+
+    .faq-answer {
+        color: var(--neon-cyan);
+        line-height: 1.8;
+    }
+
+    footer {
+        background: var(--deep-purple);
+        padding: 60px 20px 30px;
+        text-align: center;
+        border-top: 3px solid var(--neon-cyan);
+    }
+
+    .footer-cta {
+        margin: 40px 0;
+    }
+
+    .footer-links {
+        margin-top: 40px;
+        padding-top: 30px;
+        border-top: 1px solid rgba(0, 255, 255, 0.3);
+        color: var(--neon-cyan);
+    }
+
+    .footer-links a {
+        color: var(--neon-cyan);
+        text-decoration: none;
+        margin: 0 15px;
+        transition: all 0.3s;
+    }
+
+    .footer-links a:hover {
+        color: var(--neon-magenta);
+        text-shadow: 0 0 10px var(--neon-magenta);
+    }
+
+    .disclaimer {
+        font-size: 0.9rem;
+        color: var(--neon-green);
+        margin-top: 20px;
+        font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 3rem;
+            letter-spacing: 4px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+        }
+
+        h3 {
+            font-size: 2rem;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+        }
+    }
+
+    .scanner-line {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+        animation: scan 4s linear infinite;
+        pointer-events: none;
+        z-index: 9999;
+    }
+
+    @keyframes scan {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(100vh); }
+    }
+    .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 0, 21, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--neon-cyan);
+            padding: 15px 20px;
+            z-index: 9998;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-nav a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .top-nav a:hover {
+            color: var(--neon-magenta);
+            text-shadow: 0 0 10px var(--neon-magenta);
+        }
+
+        .top-nav .arrow {
+            font-size: 1.2rem;
+        }
+
+        body {
+            padding-top: 60px;
+        }
+</style>
+
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="https://helgosthinks.github.io">
+            <span class="arrow">←</span>
+            <span>Zurück zum Portfolio</span>
+        </a>
+    </nav>
+    
+    <div class="scanner-line"></div>
+
+<header>
+    <div class="container">
+        <h1 class="glitch" data-text="AIrrenanstalt"><span class="ai-prefix">AI</span>rrenanstalt</h1>
+        <h2>Akademie für AI-Experimente und kontrollierten Wahnsinn</h2>
+        
+        <div class="teaser">
+            <p><strong>Wo Vernunft Urlaub macht und Ergebnisse kommen.</strong></p>
+            <p>Wir testen. Wir messen. Wir übertreiben präzise.</p>
+        </div>
+
+        <div class="cta-buttons">
+            <a href="#kontakt" class="btn btn-primary">Jetzt eintreten</a>
+            <a href="#kontakt" class="btn btn-secondary">Sicherheitsgurt anfordern</a>
+        </div>
+    </div>
+</header>
+
+<section id="was-wir-tun">
+    <div class="container">
+        <h3>Was wir tun</h3>
+        <div class="section-content">
+            <p style="font-size: 1.3rem; margin-bottom: 30px;">Strategie, Prototypen, Rollout. In dieser Reihenfolge. Meistens.</p>
+            <ul>
+                <li><strong>Strategie:</strong> Ziele, die auch Montagmorgen halten.</li>
+                <li><strong>Labor:</strong> Proof in Tagen. Kaffee inklusive.</li>
+                <li><strong>Werkbank:</strong> Prozesse, die nicht beim ersten Update sterben.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="fuer-wen">
+    <div class="container">
+        <h3>Für wen</h3>
+        <div class="grid">
+            <div class="card">
+                <h4>Geschäftsführung</h4>
+                <p>Strategie, Konzept & Sparring</p>
+            </div>
+            <div class="card">
+                <h4>IT/Operations</h4>
+                <p>Ordnung im Chaos. Chaos optional.</p>
+            </div>
+            <div class="card">
+                <h4>Fachbereiche</h4>
+                <p>Prozesse verstehen und entspannt auf links drehen. Null Drama.</p>
+            </div>
+            <div class="card">
+                <h4>Teams</h4>
+                <p>Sprints, Hackathons & Rapid Coaching</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="angebote">
+    <div class="container">
+        <h3>Angebote</h3>
+        <div class="grid">
+            <div class="card">
+                <h4>1. AI-Readiness Sprint</h4>
+                <p>Diagnose, Chancen, Roadmap. Schmerzfrei, fast.</p>
+                <div class="price-tag">2 Wochen</div>
+            </div>
+            <div class="card">
+                <h4>2. Triple-Speed-Workshop (TSL)</h4>
+                <p>Ideen, Prioritäten, Fokus. Drei Geschwindigkeiten, ein Ergebnis.</p>
+                <div class="price-tag">1 Tag</div>
+            </div>
+            <div class="card">
+                <h4>3. Prototype-Lab</h4>
+                <p>1–3 Prototypen, die laufen. Oder spektakulär scheitern.</p>
+                <div class="price-tag">10 Tage</div>
+            </div>
+            <div class="card">
+                <h4>4. Embedded Facilitation</h4>
+                <p>Live-Begleitung. Prompts, Playbooks, Nerven aus Stahl.</p>
+            </div>
+            <div class="card">
+                <h4>5. Process Automation Pack</h4>
+                <p>n8n/Make, Hands-off-Flows, Monitoring. Kein Voodoo.</p>
+            </div>
+            <div class="card">
+                <h4>6. GEO/AEO Content-Engine</h4>
+                <p>Fragen rein, Reichweite raus. Messbar absurd gut.</p>
+            </div>
+            <div class="card">
+                <h4>7. AI-Ops Light</h4>
+                <p>Rollen, Rechte, Policies. Schatten-IT ans Tageslicht.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="prinzipien">
+    <div class="container">
+        <h3>Prinzipien</h3>
+        <ul>
+            <li><strong>Bricks–Bytes–Behaviour:</strong> Infrastruktur, Tools, Verhalten. Alles drei.</li>
+            <li><strong>Academy–Lab–Werkbank:</strong> Lernen, bauen, verankern. Kein Theater.</li>
+            <li><strong>Security first:</strong> Daten leben länger als Hypes.</li>
+            <li><strong>Kleine Loops:</strong> Jede Woche Beweise. Keine PowerPoint-Religion.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="ergebnisse">
+    <div class="container">
+        <h3>Überdrehte Ergebnisse</h3>
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">−50%</div>
+                <div class="stat-label">Zeit in Routinearbeit</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">−30%</div>
+                <div class="stat-label">Prozesskosten</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">−65%</div>
+                <div class="stat-label">Fehlerquote</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">+150%</div>
+                <div class="stat-label">Dokumentationsdisziplin</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">+120%</div>
+                <div class="stat-label">Echte Nutzung</div>
+            </div>
+        </div>
+        <p class="disclaimer">* Abhängig von Baseline, Mut und Keksdose.</p>
+    </div>
+</section>
+
+<section id="ablauf">
+    <div class="container">
+        <h3>Ablauf</h3>
+        <ul>
+            <li><strong>1. Briefing (45 min):</strong> Ziele, Risiken, Tabuwörter.</li>
+            <li><strong>2. Scan:</strong> Systeme, Datenflüsse, Verantwortungen.</li>
+            <li><strong>3. Entscheidungs-Frame:</strong> Nutzen × Aufwand × Risiko.</li>
+            <li><strong>4. Bau & Test:</strong> Proto → Pilot → Rollout.</li>
+            <li><strong>5. Handover:</strong> Schulung, Playbooks, KPIs. Dann Ruhe.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="cases">
+    <div class="container">
+        <h3>Kurz-Cases</h3>
+        <div class="grid">
+            <div class="card">
+                <h4>Vertrieb</h4>
+                <p>Angebotsentwürfe aus CRM. Durchlaufzeit −38%. Upsell-Reflex +22%.</p>
+            </div>
+            <div class="card">
+                <h4>Service</h4>
+                <p>Ticket-Triage. First-Contact-Resolution +27%. Wartemusik −100%.</p>
+            </div>
+            <div class="card">
+                <h4>Marketing</h4>
+                <p>GEO-Artikel aus Kundenfragen. Leads +31%. Vanity-KPIs −∞.</p>
+            </div>
+            <div class="card">
+                <h4>HR</h4>
+                <p>Onboarding-Prompts. Einarbeitung −29%. Peinliche To-Dos −97%.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="preise">
+    <div class="container">
+        <h3>Preise</h3>
+        <ul style="font-size: 1.2rem;">
+            <li><strong>Sprints/Workshops:</strong> ab 2.500 €</li>
+            <li><strong>Prototypen (10 Tage):</strong> 5.000–10.000 €</li>
+            <li><strong>Begleitung/AI-Ops:</strong> ab 3.000 €/Monat</li>
+        </ul>
+        <p style="margin-top: 30px; font-size: 1.1rem; color: var(--neon-yellow);">Fixpreise pro Ergebnis. Keine Stundenlotterie. Keine Sternzeichenrabatte.</p>
+    </div>
+</section>
+
+<section id="proof">
+    <div class="container">
+        <h3>Proof</h3>
+        <ul>
+            <li>20+ Jahre Transformation. Null Esoterik.</li>
+            <li>Governance vor Gadgets.</li>
+            <li>Referenzen unter NDA. Wir können schweigen.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="faq">
+    <div class="container">
+        <h3>FAQ</h3>
+        
+        <div class="faq-item">
+            <div class="faq-question">Warum „AIrrenanstalt"?</div>
+            <div class="faq-answer">Selbstironie. Klartext. Antihype mit Wirkung.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Wie messen wir Nutzen?</div>
+            <div class="faq-answer">Vorher/Nachher. Zeit, Kosten, Qualität, Nutzung. Keine gefühlten Wahrheiten.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Daten & IP?</div>
+            <div class="faq-answer">Kundendaten bleiben beim Kunden. Separate Tenants. IP beim Auftraggeber.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Welche Tools?</div>
+            <div class="faq-answer">Die, die passen. n8n/Make, M365, G-Workspace, eigene Modelle. Kein Tool-Abo-Zwang.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Security?</div>
+            <div class="faq-answer">Least Privilege, Logging, Reviews. Keine offenen Scheunentore.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">On-Prem vs. Cloud?</div>
+            <div class="faq-answer">Beides möglich. Entscheidung nach Risiko, Budget, Schlafqualität.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Was, wenn der Prototyp floppt?</div>
+            <div class="faq-answer">Billig gescheitert. Lerneffekt gesichert. Nächster Versuch oder Stopp.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Wie starten?</div>
+            <div class="faq-answer">45-Min-Call. Angebot. Sprint. Ergebnisse in 14 Tagen.</div>
+        </div>
+    </div>
+</section>
+
+<footer id="kontakt">
+    <div class="container">
+        <h3>Call-to-Action</h3>
+        
+        <div class="footer-cta">
+            <div style="margin-bottom: 40px;">
+                <h4 style="color: var(--neon-yellow); font-size: 1.5rem; margin-bottom: 15px;">Jetzt eintreten</h4>
+                <p style="color: var(--neon-cyan);">Ziel, Nutzen, erstes Use-Case-Canvas.</p>
+            </div>
+            
+            <div>
+                <h4 style="color: var(--neon-yellow); font-size: 1.5rem; margin-bottom: 15px;">Sicherheitsgurt anfordern</h4>
+                <p style="color: var(--neon-cyan);">Leistungsbeschreibung, Plan, Fixpreis.</p>
+            </div>
+        </div>
+
+        <div class="cta-buttons" style="margin-top: 50px;">
+            <a href="mailto:kontakt@airrenanstalt.de" class="btn btn-primary">Kontakt aufnehmen</a>
+        </div>
+
+        <div class="footer-links">
+            <a href="#impressum">Impressum</a> • 
+            <a href="#datenschutz">Datenschutz</a> • 
+            <a href="mailto:kontakt@airrenanstalt.de">kontakt@airrenanstalt.de</a> • 
+            <span style="color: var(--neon-cyan);">+49 (…)</span>
+        </div>
+
+        <p style="margin-top: 40px; color: var(--neon-green); font-size: 0.9rem;">
+            © 2025 AIrrenanstalt – Wo Vernunft Urlaub macht.
+        </p>
+    </div>
+</footer>
+```
+
+</body>
+</html>

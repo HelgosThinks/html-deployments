@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fünf Organisationen. Fünf Welten. Eine Frage.</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 60px 20px;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+        
+        .highlight {
+            background: linear-gradient(90deg, #ff6ec7, #ff8fd8);
+            padding: 0 15px;
+            display: inline-block;
+            transform: rotate(-1deg);
+            color: #000;
+        }
+        
+        .hero h2 {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-weight: 400;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        .hero-text {
+            max-width: 800px;
+            margin: 30px auto 50px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .hero-text p {
+            margin-bottom: 20px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 60px;
+            background: #ff6ec7;
+            color: #000;
+            text-decoration: none;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 8px 8px 0 rgba(255, 110, 199, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0 rgba(255, 110, 199, 0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: #ff6ec7;
+            border: 3px solid #ff6ec7;
+            box-shadow: 8px 8px 0 rgba(255, 110, 199, 0.2);
+        }
+
+        .cta-button.secondary:hover {
+            background: #ff6ec7;
+            color: #000;
+        }
+        
+        /* Torn Paper Sections */
+        .torn-section {
+            position: relative;
+            padding: 80px 20px;
+            background: #f5f5f5;
+            color: #000;
+            clip-path: polygon(
+                0 5%,
+                3% 2%,
+                7% 4%,
+                10% 1%,
+                15% 3%,
+                20% 2%,
+                25% 4%,
+                30% 1%,
+                35% 3%,
+                40% 2%,
+                45% 4%,
+                50% 1%,
+                55% 3%,
+                60% 2%,
+                65% 4%,
+                70% 1%,
+                75% 3%,
+                80% 2%,
+                85% 4%,
+                90% 1%,
+                95% 3%,
+                100% 2%,
+                100% 95%,
+                97% 98%,
+                93% 96%,
+                90% 99%,
+                85% 97%,
+                80% 98%,
+                75% 96%,
+                70% 99%,
+                65% 97%,
+                60% 98%,
+                55% 96%,
+                50% 99%,
+                45% 97%,
+                40% 98%,
+                35% 96%,
+                30% 99%,
+                25% 97%,
+                20% 98%,
+                15% 96%,
+                10% 99%,
+                5% 97%,
+                0 98%
+            );
+            margin: -20px 0;
+        }
+        
+        .torn-section.dark {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .section-title .pink-mark {
+            background: #ff6ec7;
+            padding: 5px 15px;
+            display: inline-block;
+            transform: rotate(-2deg);
+            color: #000;
+        }
+
+        /* Content Text */
+        .content-text {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.9;
+        }
+
+        .content-text p {
+            margin-bottom: 25px;
+        }
+
+        .content-text strong {
+            color: #ff6ec7;
+        }
+
+        .torn-section.dark .content-text strong {
+            color: #ff6ec7;
+        }
+        
+        /* Checklist */
+        .checklist {
+            max-width: 900px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 25px 25px 25px 60px;
+            margin-bottom: 20px;
+            background: #fff;
+            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .torn-section.dark .checklist li {
+            background: #2a2a2a;
+        }
+
+        .checklist li::before {
+            content: '→';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff6ec7;
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+        
+        /* Stories Grid */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 50px auto 0;
+        }
+        
+        .story-card {
+            background: #fff;
+            padding: 40px;
+            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .torn-section.dark .story-card {
+            background: #2a2a2a;
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: #ff6ec7;
+            z-index: -1;
+            transform: rotate(-1deg);
+        }
+        
+        .story-card:hover {
+            transform: translate(-3px, -3px);
+            background: #ff6ec7 !important;
+        }
+
+        .story-card:hover h3,
+        .story-card:hover h4,
+        .story-card:hover p {
+            color: #000 !important;
+        }
+        
+        .reifegrad-badge {
+            font-family: 'Bebas Neue', sans-serif;
+            display: inline-block;
+            background: linear-gradient(90deg, #ff6ec7, #ff8fd8);
+            color: #000;
+            padding: 8px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .story-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            color: #000;
+        }
+
+        .torn-section.dark .story-card h3 {
+            color: #fff;
+        }
+        
+        .story-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .torn-section.dark .story-card h4 {
+            color: #ccc;
+        }
+        
+        .story-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .torn-section.dark .story-card p {
+            color: #999;
+        }
+
+        .story-conclusion {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Author Section */
+        .author-section {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .author-text {
+            font-size: 1.2rem;
+            line-height: 1.9;
+        }
+        
+        .author-text p {
+            margin-bottom: 25px;
+        }
+        
+        .author-text strong {
+            color: #ff6ec7;
+        }
+        
+        /* FAQ Section */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background: #fff;
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .torn-section.dark .faq-item {
+            background: #2a2a2a;
+        }
+        
+        .faq-question {
+            padding: 25px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            color: #000;
+        }
+
+        .torn-section.dark .faq-question {
+            color: #fff;
+        }
+        
+        .faq-question:hover {
+            padding-left: 30px;
+        }
+
+        .faq-question span {
+            color: #ff6ec7;
+            font-size: 2rem;
+        }
+        
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 25px;
+            max-height: 500px;
+        }
+        
+        .faq-answer p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .torn-section.dark .faq-answer p {
+            color: #999;
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .final-cta .section-title {
+            color: #fff;
+        }
+        
+        .final-cta-text {
+            max-width: 800px;
+            margin: 40px auto;
+            font-size: 1.3rem;
+            line-height: 1.9;
+        }
+
+        .final-cta-text p {
+            margin-bottom: 20px;
+        }
+        
+        .availability-note {
+            margin-top: 30px;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 60px 20px;
+            text-align: center;
+            background: #000;
+            border-top: 1px solid #333;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #ff6ec7;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            transform: scale(1.1);
+        }
+        
+        .footer-info {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                padding: 15px 40px;
+                font-size: 1.2rem;
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .checklist li {
+                font-size: 1rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                Fünf Organisationen.<br>
+                <span class="highlight">Fünf Welten.</span><br>
+                Eine Frage.
+            </h1>
+            <h2>
+                Wie KI im Arbeitsalltag wirklich aussieht – jenseits von Buzzwords und Beraterfolien.
+            </h2>
+            
+            <div class="hero-text">
+                <p><strong>Rita</strong> steht vor der Kaffeemaschine und kann den Zucker nicht finden.<br>
+                <strong>Lea</strong> spricht gleichzeitig mit drei KI-Agenten und es fühlt sich leicht an.</p>
+                
+                <p>Zwischen diesen beiden Momenten liegen nicht nur vier Reifegrade –<br>
+                sondern echte Menschen, echte Herausforderungen, echte Transformationen.</p>
+                
+                <p><strong>Dieses Buch erzählt ihre Geschichten.</strong></p>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="#" class="cta-button">Kindle €6,99</a>
+                <a href="#" class="cta-button">Print €14,99</a>
+                <a href="#" class="cta-button secondary">Gratis reinlesen</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="torn-section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="pink-mark">Kennen Sie das?</span>
+            </h2>
+            
+            <div class="content-text">
+                <p>Sie haben schon drei Webinare zu KI besucht. Alle sagen: „Das müssen Sie jetzt machen." Aber niemand sagt: „So fühlt es sich an, wenn man anfängt."</p>
+                
+                <p>Sie haben ein Team, das zwischen Neugier und Überforderung schwankt. Einen Chef, der nickt – aber nichts entscheidet. Und das diffuse Gefühl: „Wir müssen was tun. Aber was?"</p>
+                
+                <p>Die meisten Bücher über KI-Transformation geben Ihnen Frameworks. Checklisten. Roadmaps.</p>
+                
+                <p><strong>Dieses Buch gibt Ihnen etwas anderes: Menschen.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="torn-section dark">
+        <div class="container">
+            <h2 class="section-title">
+                Keine Theorie. <span class="pink-mark">Keine Buzzwords.</span> Nur Geschichten.
+            </h2>
+            
+            <div class="content-text">
+                <p>Dieses Buch zeigt Ihnen nicht, wie KI funktioniert. Es zeigt Ihnen, wie KI-Transformation funktioniert – oder scheitert.</p>
+                
+                <p><strong>In fünf Organisationen. Aus fünf Branchen. Auf fünf Reifegraden.</strong></p>
+                
+                <p>Sie lernen Rita kennen, die KI für „diese Software, die den Schreibtisch aufräumt" hält. Lisa, die mit Donuts eine Lernkultur aufbaut. Anja, die fünf Minuten spart – und sie für Blumen nutzt. Sven, der Daten vertraut, aber Menschen nicht vergisst. Und Lea, die mit drei Agenten spricht, als wären sie Kolleginnen.</p>
+                
+                <p>Keine erfundenen Erfolgsgeschichten. Sondern ehrliche Momentaufnahmen: Chaos. Erste Schritte. Erfolge. Rückschläge. Durchbrüche.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Whom Section -->
+    <section class="torn-section">
+        <div class="container">
+            <h2 class="section-title">
+                Dieses Buch ist <span class="pink-mark">für Sie, wenn...</span>
+            </h2>
+            
+            <ul class="checklist">
+                <li>Sie wissen, dass Sie "irgendwas mit KI" machen müssen – aber nicht, wo Sie anfangen sollen</li>
+                <li>Sie genug haben von Powerpoints, die alles versprechen und nichts erklären</li>
+                <li>Sie ein Team haben, das zwischen Begeisterung und Skepsis schwankt</li>
+                <li>Sie nicht die nächste Silicon-Valley-Disruption suchen, sondern einfach wollen, dass die Arbeit leichter wird</li>
+                <li>Sie sich fragen: "Wo stehen wir eigentlich?" – und eine ehrliche Antwort brauchen</li>
+                <li>Sie Geschichten lieber mögen als Tabellen (aber trotzdem wissen wollen, was dahintersteckt)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Stories Section -->
+    <section class="torn-section dark">
+        <div class="container">
+            <h2 class="section-title">
+                Fünf Geschichten. <span class="pink-mark">Fünf Reifegrade.</span> Eine Landkarte.
+            </h2>
+            
+            <div class="stories-grid">
+                <div class="story-card">
+                    <span class="reifegrad-badge">Reifegrad 1</span>
+                    <h3>Stadtwerke Südpfalz</h3>
+                    <h4>"KI? Haben wir da jemanden, der sich auskennt?"</h4>
+                    <p>Rita kann den Zucker nicht finden. Tom experimentiert heimlich. Und Herr Knobloch nickt – und wartet ab.</p>
+                    <p>Eine Organisation am Anfang. Ohne Strategie. Ohne Regeln. Aber mit Neugier.</p>
+                </div>
+
+                <div class="story-card">
+                    <span class="reifegrad-badge">Reifegrad 2</span>
+                    <h3>Textilhaus Linde</h3>
+                    <h4>"Wir haben jetzt KI! Also... ein bisschen."</h4>
+                    <p>Lisa bringt Donuts mit. Marco ist überfordert. Und Frau Linde glaubt, dass alles möglich ist.</p>
+                    <p>Eine Organisation, die erste Strukturen aufbaut. Und lernt, dass Donuts manchmal wichtiger sind als Strategiepapiere.</p>
+                </div>
+
+                <div class="story-card">
+                    <span class="reifegrad-badge">Reifegrad 3</span>
+                    <h3>Pflegeverbund Sonnental</h3>
+                    <h4>"Zwischen Würde und Workflow"</h4>
+                    <p>Anja spart fünf Minuten. Und nutzt sie für Blumen.</p>
+                    <p>Eine Organisation, die zeigt, dass KI entlasten kann – wenn man die Menschen nicht vergisst.</p>
+                </div>
+
+                <div class="story-card">
+                    <span class="reifegrad-badge">Reifegrad 4</span>
+                    <h3>Maschinenbau Krüger</h3>
+                    <h4>"Präzision, Prozesse und ein bisschen Perfektionismus"</h4>
+                    <p>Sven vertraut Daten. Mira baut Portfolios. Und Herr Krüger weiß: KI ist kein Zauber. Sondern harte Arbeit.</p>
+                    <p>Eine Organisation, die KI strategisch verankert. Mit Dashboards, Governance und klaren Zielen.</p>
+                </div>
+
+                <div class="story-card">
+                    <span class="reifegrad-badge">Reifegrad 5</span>
+                    <h3>Kreativagentur CosmoLab</h3>
+                    <h4>"Die Zukunft ist jetzt – und sie arbeitet mit Agenten"</h4>
+                    <p>Lea spricht mit drei Agenten gleichzeitig. Jonas baut Meta-Agenten. Und Tara sagt: "Die KI gibt mir meinen Job zurück."</p>
+                    <p>Eine Organisation, die zeigt, was möglich wird, wenn Menschen und Maschinen zu Partnern werden.</p>
+                </div>
+            </div>
+
+            <div class="story-conclusion">
+                <p>Jede Geschichte steht für sich. Aber zusammen ergeben sie eine Landkarte – für alle, die sich fragen: Wo stehen wir? Und wo wollen wir hin?</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Section -->
+    <section class="torn-section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="pink-mark">Wer schreibt</span> hier eigentlich?
+            </h2>
+            
+            <div class="author-section">
+                <div class="author-text">
+                    <p>Ich bin <strong>Helge K.</strong> – ich lebe an der Hessischen Bergstraße und arbeite mit Organisationen und Teams verschiedenster Branchen.</p>
+                    
+                    <p>Ich entwerfe Strategien, finde nicht, dass man zum Arzt gehen sollte, wenn man Visionen hat, baue Systeme, mache Workflows leichtgängig und effizient.</p>
+
+                    <p>Ich baue keine Strategiepapiere. Ich baue Systeme. Automatisierte Content-Maschinen. Workflows, die 10x schneller laufen. Und Transformationen, die nicht nach drei Monaten verpuffen.</p>
+                    
+                    <p>Ich schreibe wie ein Journalist, denke wie ein Ingenieur, baue wie ein Entwickler.</p>
+                    
+                    <p>Und ich glaube: Die beste Art, über Transformation zu sprechen, sind nicht Frameworks – sondern Geschichten.</p>
+                    
+                    <p><strong>Deshalb dieses Buch.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="torn-section dark">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="pink-mark">Noch Fragen?</span>
+            </h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Für wen ist dieses Buch?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Für alle, die mit KI-Transformation zu tun haben – Führungskräfte, Berater, HR, IT, Teamleiter. Und für alle, die genug haben von Buzzwords und wissen wollen, wie es sich wirklich anfühlt.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Muss ich Technik-Expert:in sein?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nein. Null. Das Buch erklärt keine Algorithmen. Es erzählt Geschichten von Menschen, die mit KI arbeiten. Wenn Sie Rita vor der Kaffeemaschine verstehen, verstehen Sie das Buch.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Roman oder Sachbuch?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Beides. Es sind fiktive Geschichten – aber basierend auf echten Mustern aus echter Beratungsarbeit. Reportage-Stil trifft Business-Analyse.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Gibt es das auch als Hörbuch?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Noch nicht. Aber wenn genug Leute danach fragen... vielleicht. Schreib mir, wenn du Interesse hast.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Kann ich das Buch verschenken?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ja! Du kannst Kindle-Geschenk-Codes kaufen oder Print-Exemplare direkt an Kolleg:innen schicken.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="section-title">
+                Bereit? <span class="pink-mark">Dann fangen wir an.</span>
+            </h2>
+            
+            <div class="final-cta-text">
+                <p>Dieses Buch ist kein Verkaufsargument. Es ist eine Einladung.</p>
+                
+                <p>Eine Einladung, KI-Transformation anders zu denken. Nicht als Projekt. Sondern als Weg. Mit echten Menschen. Echten Herausforderungen. Echten Geschichten.</p>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="#" class="cta-button">Kindle kaufen – €6,99</a>
+                <a href="#" class="cta-button">Print bestellen – €14,99</a>
+                <a href="#" class="cta-button secondary">Gratis Kapitel (PDF)</a>
+            </div>
+            
+            <p class="availability-note">
+                Erhältlich bei Amazon (Kindle & Print)<br>
+                Oder als kostenloser PDF-Auszug (gegen E-Mail)
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">Website</a>
+                <a href="#">Medium</a>
+                <a href="#">Bluesky</a>
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2025 Helge K.</p>
+                <p style="margin-top: 10px;">
+                    <a href="#" style="color: #666; text-decoration: none;">Impressum</a> | 
+                    <a href="#" style="color: #666; text-decoration: none;">Datenschutz</a> | 
+                    <a href="#" style="color: #666; text-decoration: none;">Kontakt</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            const allAnswers = document.querySelectorAll('.faq-answer');
+            const allButtons = document.querySelectorAll('.faq-question span');
+            
+            // Close all other FAQs
+            allAnswers.forEach(a => {
+                if (a !== answer) {
+                    a.classList.remove('active');
+                }
+            });
+            
+            allButtons.forEach(b => {
+                if (b !== button.querySelector('span')) {
+                    b.textContent = '+';
+                }
+            });
+            
+            // Toggle current FAQ
+            answer.classList.toggle('active');
+            const symbol = button.querySelector('span');
+            symbol.textContent = answer.classList.contains('active') ? '−' : '+';
+        }
+    </script>
+</body>
+</html>

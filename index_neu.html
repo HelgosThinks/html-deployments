@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>HELGE'S LAB – STATIC EXPERIMENTS</title>
+    <meta name="title" content="HELGE'S LAB – STATIC EXPERIMENTS">
+    <meta name="description" content="Übersicht meiner HTML-Projekte, Experimente und digitalen Schnellschüssen.">
+    <meta name="robots" content="index, follow">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-cyan: #00ffff;
+            --neon-magenta: #ff00ff;
+            --neon-yellow: #ffff00;
+            --neon-green: #00ff41;
+            --deep-purple: #1a0033;
+            --dark-bg: #0a0015;
+            --electric-blue: #0066ff;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: var(--dark-bg);
+            color: var(--neon-cyan);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .scanner-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            animation: scan 4s linear infinite;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+
+        header {
+            text-align: center;
+            padding: 100px 20px 60px;
+            background: linear-gradient(135deg, var(--deep-purple) 0%, var(--dark-bg) 100%);
+            border-bottom: 3px solid var(--neon-cyan);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 255, 255, 0.03) 2px,
+                rgba(0, 255, 255, 0.03) 4px
+            );
+            pointer-events: none;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            color: var(--neon-cyan);
+            text-shadow: 
+                0 0 10px var(--neon-cyan),
+                0 0 20px var(--neon-cyan),
+                0 0 40px var(--neon-cyan),
+                0 0 80px var(--electric-blue);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--neon-magenta);
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--neon-green);
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(80, 80, 100, 0.95) 0%, rgba(50, 50, 70, 0.95) 100%);
+            border: 3px solid var(--electric-blue);
+            border-radius: 15px;
+            padding: 35px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 5px 25px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(0, 102, 255, 0.4);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-cyan);
+            box-shadow: 
+                0 15px 50px rgba(0, 255, 255, 0.6),
+                0 0 40px rgba(0, 255, 255, 0.5);
+        }
+
+        .project-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(0, 255, 255, 0.1);
+            line-height: 1;
+        }
+
+        .project-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--neon-yellow);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px var(--neon-yellow);
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-description {
+            color: var(--neon-cyan);
+            font-size: 1rem;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            background: rgba(0, 255, 255, 0.2);
+            border: 1px solid var(--neon-cyan);
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+        }
+
+        .project-link {
+            display: inline-block;
+            font-family: 'Orbitron', sans-serif;
+            padding: 12px 30px;
+            background: var(--neon-cyan);
+            color: var(--dark-bg);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+
+        .project-link:hover {
+            background: transparent;
+            color: var(--neon-cyan);
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 30px var(--neon-cyan);
+            transform: scale(1.05);
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .status-live {
+            background: rgba(0, 255, 65, 0.2);
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
+        }
+
+        .status-beta {
+            background: rgba(255, 255, 0, 0.2);
+            border: 2px solid var(--neon-yellow);
+            color: var(--neon-yellow);
+        }
+
+        .status-experiment {
+            background: rgba(255, 0, 255, 0.2);
+            border: 2px solid var(--neon-magenta);
+            color: var(--neon-magenta);
+        }
+
+        .add-project {
+            background: linear-gradient(135deg, rgba(60, 60, 80, 0.6) 0%, rgba(40, 40, 60, 0.6) 100%);
+            border: 3px dashed var(--neon-magenta);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-project:hover {
+            background: linear-gradient(135deg, rgba(80, 60, 100, 0.7) 0%, rgba(60, 40, 80, 0.7) 100%);
+            border-color: var(--neon-cyan);
+            transform: translateY(-5px);
+        }
+
+        .add-icon {
+            font-size: 4rem;
+            color: var(--neon-magenta);
+            margin-bottom: 20px;
+        }
+
+        .add-text {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-magenta);
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background: var(--deep-purple);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 3px solid var(--neon-cyan);
+            margin-top: 80px;
+        }
+
+        footer p {
+            color: var(--neon-cyan);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+        
+    <div class="scanner-line"></div>
+
+    <header>
+        <h1>EXPERIMENTE</h1>
+        <p class="subtitle">Static HTML</p>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Meine Websites</h2>
+
+        <div class="projects-grid">
+            <!-- Projekt 1: AIrrenanstalt -->
+            <div class="project-card">
+                <div class="project-number">01</div>
+                <span class="status status-live">● EXPERIMENT</span>
+                <h3 class="project-title">AIrrenanstalt</h3>
+                <p class="project-description">
+                    Akademie für AI-Experimente und kontrollierten Wahnsinn. Hier gibt's spannende Experimente und Labs, damit du deine AI-Reise mit Freude, Spaß und Speed boosten kannst. Pure Dopamine!
+                </p>
+                <div class="project-tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">Landing Page</span>
+                    <span class="tag">Neon Design</span>
+                </div>
+                <a href="https://helgosthinks.github.io/html-deployments/airrenanstalt.html" class="project-link" target="_blank">Projekt ansehen →</a>
+            </div>
+
+            <!-- Projekt 2: Buchprojekt 5 Organisationen -->
+            <div class="project-card">
+                <div class="project-number">02</div>
+                <span class="status status-beta">● BETA</span>
+                <h3 class="project-title">Buchprojekt</h3>
+                <p class="project-description">
+                    Fünf Organisationen. Fünf Welten. Eine Frage. Wie KI im Arbeitsalltag wirklich aussieht – jenseits von Buzzwords und Beraterfolien.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">Reifegrad 1</span>
+                    <span class="tag">Reifegrad 2</span>
+                    <span class="tag">Reifegrad 3</span>
+                    <span class="tag">Reifegrad 4</span>
+                    <span class="tag">Reifegrad 5</span>
+                </div>
+                <a href="https://helgosthinks.github.io/html-deployments/buchprojekt1.html" class="project-link" target="_blank">Projekt ansehen →</a>
+            </div>
+
+            <!-- Projekt 3: Feuilleton -->
+            <div class="project-card">
+                <div class="project-number">03</div>
+                <span class="status status-experiment">● LIVE</span>
+                <h3 class="project-title">Ein Dialog</h3>
+                <p class="project-description">
+                    Ein Beitrag aus dem Feuilleton. Vom Ende der Unschuldsvermutung und dem verzweifelten Bemühen, mit KI den richtigen Ton zu finden.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">Reflexion</span>
+                    <span class="tag">Dialog</span>
+                    <span class="tag">WhatsApp</span>
+                </div>
+                <a href="https://helgosthinks.github.io/html-deployments/unschuldsvermutung.html" class="project-link" target="_blank">Beitrag ansehen →</a>
+            </div>
+
+            <!-- Projekt 4: Analyse -->
+            <div class="project-card">
+                <div class="project-number">04</div>
+                <span class="status status-experiment">● LIVE</span>
+                <h3 class="project-title">Analyse</h3>
+                <p class="project-description">
+                    Die Nacht, in der wir über das Ende Amerikas sprachen. Ein Essay über Demokratie, Normalität und den Moment, in dem alles kippt.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">Polit-Analyse</span>
+                    <span class="tag">Kontroverse</span>
+                    <span class="tag">Wandel</span>
+                </div>
+                <a href="https://helgosthinks.github.io/html-deployments/die-nacht-amerika-essay.html" class="project-link" target="_blank">Beitrag ansehen →</a>
+            </div>
+
+            <!-- Platzhalter für neues Projekt -->
+            <div class="project-card add-project">
+                <div class="add-icon">+</div>
+                <p class="add-text">Nächstes Projekt</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+
+<footer id="kontakt">
+    <div class="container">
+        <h3>Call-to-Action</h3>
+        
+        <div class="footer-cta">
+            <div style="margin-bottom: 40px;">
+                <h4 style="color: var(--neon-yellow); font-size: 1.5rem; margin-bottom: 15px;">Jetzt eintreten</h4>
+                <p style="color: var(--neon-cyan);">Ziel, Nutzen, erstes Use-Case-Canvas.</p>
+            </div>
+            
+            <div>
+                <h4 style="color: var(--neon-yellow); font-size: 1.5rem; margin-bottom: 15px;">Sicherheitsgurt anfordern</h4>
+                <p style="color: var(--neon-cyan);">Leistungsbeschreibung, Plan, Fixpreis.</p>
+            </div>
+        </div>
+
+        <div class="cta-buttons" style="margin-top: 50px;">
+            <a href="mailto:kontakt@airrenanstalt.de" class="btn btn-primary">Kontakt aufnehmen</a>
+        </div>
+
+        <div class="footer-links">
+            <a href="https://helgosthinks.github.io/impressum">Impressum</a> • 
+            <a href="https://helgosthinks.github.io/datenschutz">Datenschutz</a> • 
+            <a href="mailto:helge@helge-koops.de">helge@helge-koops.de</a> • 
+            <span style="color: var(--neon-cyan);">+49 (…)</span>
+        </div>
+
+        <p style="margin-top: 40px; color: var(--neon-green); font-size: 0.9rem;">
+            © 2025 Helge Koops
+        </p>
+    </div>
+</footer>
+        
+</body>
+</html>

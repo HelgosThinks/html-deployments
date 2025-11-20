@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warum ich meine Websites jetzt in rohem HTML baue</title>
+    <meta name="description" content="Wie ich lernte, WordPress zu verlassen und Jamstack zu lieben. Von 3 Sekunden zu 0,3 Sekunden. Von 50€/Monat zu 0€.">
+    <meta name="author" content="Helge Koops">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --text-primary: #1a1a1a;
+            --text-secondary: #666;
+            --accent: #0066cc;
+            --bg-main: #fafafa;
+            --bg-content: #ffffff;
+            --border: #e0e0e0;
+            --code-bg: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1.125rem;
+            line-height: 1.75;
+            color: var(--text-primary);
+            background: var(--bg-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 60px 20px 100px;
+        }
+
+        header {
+            margin-bottom: 60px;
+        }
+
+        .back-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 40px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .content {
+            margin-top: 40px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        ul, ol {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+        }
+
+        code {
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border);
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin: 2rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 3rem 0;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent);
+            transition: all 0.2s;
+        }
+
+        a:hover {
+            color: #004499;
+            border-bottom-color: #004499;
+        }
+
+        .tldr {
+            background: #f8f9fa;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 3rem 0;
+        }
+
+        .tldr strong {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+        }
+
+        .tldr p {
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
+        .highlight-box {
+            background: #fffdf0;
+            border-left: 4px solid #ffcc00;
+            padding: 20px;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .container {
+                padding: 40px 20px 60px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.125rem;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-primary: #e0e0e0;
+                --text-secondary: #999;
+                --accent: #4a9eff;
+                --bg-main: #1a1a1a;
+                --bg-content: #242424;
+                --border: #333;
+                --code-bg: #2a2a2a;
+            }
+
+            .highlight-box {
+                background: #2a2400;
+                border-left-color: #ffcc00;
+            }
+
+            .tldr {
+                background: #242424;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="container">
+        <header>
+            <a href="../index.html" class="back-link">← Zurück zum Portfolio</a>
+            
+            <h1>Warum ich meine Websites jetzt in rohem HTML baue (und nicht mehr zurück will)</h1>
+            
+            <p class="subtitle">Oder: Wie ich lernte, WordPress zu verlassen und Jamstack zu lieben</p>
+            
+            <div class="meta">
+                <time datetime="2025-11-02">2. November 2025</time> · 5 Min. Lesezeit
+            </div>
+        </header>
+
+        <div class="content">
+            <p>Ich mach jetzt was, das auf den ersten Blick nach Zeitreise aussieht: Ich schreibe meine Websites wieder in purem HTML und CSS. Ja, du hast richtig gelesen. HTML. Wie 1997. Nur dass es 2025 ist und ich alle modernen Tools kenne.</p>
+
+            <p>Und nein, das ist keine Nostalgie. Das ist die smarteste Entscheidung, die ich dieses Jahr getroffen habe.</p>
+
+            <h2>Der Moment der Erkenntnis</h2>
+
+            <p>Neulich hab ich eine Landing Page gebaut. AIrrenanstalt, crazy-techy Design, Neon-Animationen, das volle Programm. Keine Datenbank, kein Backend, kein CMS. Nur HTML, CSS, und ein bisschen JavaScript.</p>
+
+            <p>Upload zu GitHub Pages. Fertig. Live. Kostenlos. In 2 Minuten.</p>
+
+            <p>Und dann der Realitätscheck: Die Seite lädt in 0,3 Sekunden. Auf jedem Device. Von jedem Ort der Welt. Ohne dass ich einen Server konfigurieren muss. Ohne dass mich irgendjemand hacken kann.</p>
+
+            <p>Ich saß da und dachte: "Fuck. Das ist ja... elegant."</p>
+
+            <h2>Was ich die letzten 15 Jahre gemacht habe</h2>
+
+            <p>WordPress. Drupal. Joomla. Typo3 (ja, ich bin alt). Immer das gleiche Spiel:</p>
+
+            <ul>
+                <li>Server mieten (20-100€/Monat)</li>
+                <li>PHP konfigurieren</li>
+                <li>MySQL einrichten</li>
+                <li>CMS installieren</li>
+                <li>Plugins suchen (und hoffen, dass sie nicht kaputt sind)</li>
+                <li>Updates machen (und hoffen, dass nichts bricht)</li>
+                <li>Gehackt werden (weil irgendein Plugin Müll war)</li>
+                <li>Performance-Optimierung (weil 3 Sekunden Ladezeit normal sind)</li>
+                <li>Nächster Hack</li>
+                <li>Repeat</li>
+            </ul>
+
+            <p>Und das Beste: Für 90% meiner Projekte brauchte ich diese ganze Komplexität GAR NICHT.</p>
+
+            <h2>Das Jamstack-Paradox</h2>
+
+            <p>Hier ist der Mind-Fuck: Static Sites sind nicht "zurück zu den Anfängen". Sie sind die Zukunft, die aus der Vergangenheit gelernt hat.</p>
+
+            <div class="highlight-box">
+                <p><strong>Was wir in den 2000ern dachten:</strong><br>
+                "Dynamisch ist besser! Server-side rendering! PHP für alles! Datenbanken überall!"</p>
+                
+                <p><strong>Was wir heute wissen:</strong><br>
+                Die meisten Websites brauchen keine Datenbank. Sie brauchen HTML, das schnell ausgeliefert wird.</p>
+            </div>
+
+            <p>Jamstack nimmt das Beste aus beiden Welten:</p>
+            <ul>
+                <li>Die Geschwindigkeit von Static (1990s)</li>
+                <li>Die Flexibilität von APIs (2020s)</li>
+                <li>Die Developer Experience von Git (heute)</li>
+            </ul>
+
+            <h2>Was sich konkret ändert</h2>
+
+            <p><strong>Performance:</strong> Von 3 Sekunden zu 0,3 Sekunden. Das ist keine Optimierung. Das ist ein anderes Universum.</p>
+
+            <p><strong>Security:</strong> Kein PHP = keine PHP-Exploits. Keine Datenbank = keine SQL-Injection. Keine Admin-Logins = kein Brute-Force. Es gibt buchstäblich nichts zum Hacken.</p>
+
+            <p><strong>Kosten:</strong> Von 50€/Monat zu 0€. GitHub Pages, Netlify, Vercel - alle kostenlos für kleine bis mittlere Projekte.</p>
+
+            <p><strong>Skalierung:</strong> Meine WordPress-Seite ist bei 100 gleichzeitigen Besuchern tot. Meine Static Site? Verkraftet eine Million. Via CDN. Automatisch.</p>
+
+            <p><strong>Wartung:</strong> Keine Plugin-Updates mehr. Keine PHP-Version-Upgrades. Keine MySQL-Patches. Einfach... nichts.</p>
+
+            <h2>Was ich verliere (und warum es mir egal ist)</h2>
+
+            <p>Klar, ich verliere ein paar Dinge:</p>
+
+            <ul>
+                <li>Kein Admin-Panel (schreibe ich halt Code - dauert nicht länger)</li>
+                <li>Keine User-Logins (brauch ich in 95% der Fälle eh nicht)</li>
+                <li>Keine dynamischen Kommentare (Disqus/GitHub Issues funktionieren)</li>
+            </ul>
+
+            <p>Aber weißt du was? Für die meisten Projekte sind das Nicht-Probleme. Landing Pages, Portfolios, Blogs, Dokumentationen, Marketing-Sites - die brauchen keinen dynamischen Backend-Kram.</p>
+
+            <p>Und wenn ich's doch mal brauche? APIs. Stripe für Payments. Netlify Forms für Kontaktformulare. Contentful für Content Management. Alles da, alles besser als selbst zu bauen.</p>
+
+            <h2>Der Workflow ist... schön</h2>
+
+            <p>Hier ist mein neuer Workflow:</p>
+
+            <pre><code>1. Code schreiben (HTML/CSS/JS)
+2. git push
+3. Automatisch live</code></pre>
+
+            <p>That's it. Keine FTP-Uploads. Keine Server-SSH. Kein "Ich hoffe mal, dass das funktioniert."</p>
+
+            <p>Und wenn was kaputt geht? <code>git revert</code>. Done. Zurück zur letzten funktionierenden Version in 10 Sekunden.</p>
+
+            <h2>Warum jetzt?</h2>
+
+            <p>Zwei Gründe:</p>
+
+            <p><strong>Erstens:</strong> Die Tools sind endlich da. GitHub Pages, Netlify, Vercel haben Jamstack mainstream gemacht. Früher war Static-Hosting ein Pain. Heute ist es einfacher als WordPress.</p>
+
+            <p><strong>Zweitens:</strong> Ich hab keine Lust mehr auf Bullshit. Ich will Websites bauen, nicht Server administrieren. Ich will Code schreiben, nicht Plugin-Konflikte debuggen.</p>
+
+            <h2>Was das bedeutet</h2>
+
+            <p>Ich bin kein Purist. Wenn ein Projekt wirklich einen dynamischen Backend braucht, baue ich einen. Aber ich frage mich jetzt zuerst: "Kann ich das Static machen?"</p>
+
+            <p>Und die Antwort ist öfter "Ja" als ich dachte.</p>
+
+            <p>Nike macht's so. Figma macht's so. Smashing Magazine macht's so.</p>
+
+            <p>Und ich jetzt auch.</p>
+
+            <h2>Der Test</h2>
+
+            <p>Probier's aus. Nimm ein Projekt, das du in WordPress bauen würdest. Bau es in HTML. Upload zu GitHub Pages.</p>
+
+            <p>Und dann vergleich:</p>
+            <ul>
+                <li>Ladezeit</li>
+                <li>Sicherheit</li>
+                <li>Kosten</li>
+                <li>Wartungsaufwand</li>
+            </ul>
+
+            <p>Ich wette, du kommst zum gleichen Schluss wie ich.</p>
+
+            <hr>
+
+            <div class="tldr">
+                <p><strong>TL;DR:</strong> Ich baue jetzt Static Sites statt WordPress, weil sie schneller, sicherer, billiger und wartungsärmer sind. Das ist nicht Retro. Das ist 2025. Und es fühlt sich verdammt gut an.</p>
+            </div>
+
+            <p><em>Mehr über meinen Workflow und konkrete Projekte gibt's auf meinem <a href="https://github.com/HelgosThinks" target="_blank">GitHub</a>. Ja, ich bin jetzt einer von denen.</em></p>
+        </div>
+
+        <footer>
+            <p>© 2025 Helge Koops · <a href="../impressum.html">Impressum</a> · <a href="../datenschutz.html">Datenschutz</a></p>
+        </footer>
+    </article>
+</body>
+</html>

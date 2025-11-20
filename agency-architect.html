@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Agency Architect – Vom Verwalten des Mangels zur Gestaltung der Fülle</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 60px 20px;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+        
+        .highlight {
+            background: linear-gradient(90deg, #ff6ec7, #ff8fd8);
+            padding: 0 15px;
+            display: inline-block;
+            transform: rotate(-1deg);
+            color: #000;
+        }
+        
+        .hero h2 {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-weight: 400;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        .hero-text {
+            max-width: 800px;
+            margin: 30px auto 50px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .hero-text p {
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 20px 60px;
+            background: #ff6ec7;
+            color: #000;
+            text-decoration: none;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 8px 8px 0 rgba(255, 110, 199, 0.3);
+            margin-top: 40px;
+        }
+        
+        .cta-button:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0 rgba(255, 110, 199, 0.3);
+        }
+        
+        /* Torn Paper Sections */
+        .torn-section {
+            position: relative;
+            padding: 80px 20px;
+            background: #f5f5f5;
+            color: #000;
+            clip-path: polygon(
+                0 5%,
+                3% 2%,
+                7% 4%,
+                10% 1%,
+                15% 3%,
+                20% 2%,
+                25% 4%,
+                30% 1%,
+                35% 3%,
+                40% 2%,
+                45% 4%,
+                50% 1%,
+                55% 3%,
+                60% 2%,
+                65% 4%,
+                70% 1%,
+                75% 3%,
+                80% 2%,
+                85% 4%,
+                90% 1%,
+                95% 3%,
+                100% 2%,
+                100% 95%,
+                97% 98%,
+                93% 96%,
+                90% 99%,
+                85% 97%,
+                80% 98%,
+                75% 96%,
+                70% 99%,
+                65% 97%,
+                60% 98%,
+                55% 96%,
+                50% 99%,
+                45% 97%,
+                40% 98%,
+                35% 96%,
+                30% 99%,
+                25% 97%,
+                20% 98%,
+                15% 96%,
+                10% 99%,
+                5% 97%,
+                0 98%
+            );
+            margin: -20px 0;
+        }
+        
+        .torn-section.dark {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .section-title .pink-mark {
+            background: #ff6ec7;
+            padding: 5px 15px;
+            display: inline-block;
+            transform: rotate(-2deg);
+            color: #000;
+        }
+
+        /* Content Text */
+        .content-text {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.9;
+        }
+
+        .content-text p {
+            margin-bottom: 25px;
+        }
+
+        .content-text strong {
+            color: #ff6ec7;
+        }
+
+        .torn-section.dark .content-text strong {
+            color: #ff6ec7;
+        }
+        
+        /* Checklist */
+        .checklist {
+            max-width: 900px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 25px 25px 25px 60px;
+            margin-bottom: 20px;
+            background: #fff;
+            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .torn-section.dark .checklist li {
+            background: #2a2a2a;
+        }
+
+        .checklist li::before {
+            content: '→';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff6ec7;
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+        
+        /* Philosophy Section */
+        .philosophy-box {
+            max-width: 900px;
+            margin: 50px auto 0;
+            background: #fff;
+            padding: 50px;
+            box-shadow: 15px 15px 0 rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .torn-section.dark .philosophy-box {
+            background: #2a2a2a;
+        }
+
+        .philosophy-box::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            background: #ff6ec7;
+            z-index: -1;
+            transform: rotate(-1deg);
+        }
+
+        .philosophy-box h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .philosophy-box p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .philosophy-box ul {
+            margin: 25px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .philosophy-box ul li {
+            padding: 15px 15px 15px 50px;
+            margin-bottom: 15px;
+            background: rgba(255, 110, 199, 0.1);
+            position: relative;
+        }
+
+        .philosophy-box ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 20px;
+            color: #ff6ec7;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        /* Paths Grid */
+        .paths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 50px auto 0;
+        }
+        
+        .path-card {
+            background: #fff;
+            padding: 50px;
+            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .torn-section.dark .path-card {
+            background: #2a2a2a;
+        }
+
+        .path-card::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: #ff6ec7;
+            z-index: -1;
+            transform: rotate(-1deg);
+        }
+        
+        .path-card:hover {
+            transform: translate(-3px, -3px);
+        }
+        
+        .path-badge {
+            font-family: 'Bebas Neue', sans-serif;
+            display: inline-block;
+            background: linear-gradient(90deg, #ff6ec7, #ff8fd8);
+            color: #000;
+            padding: 10px 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .path-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            color: #000;
+        }
+
+        .torn-section.dark .path-card h3 {
+            color: #fff;
+        }
+        
+        .path-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #333;
+            font-style: italic;
+        }
+
+        .torn-section.dark .path-card h4 {
+            color: #ccc;
+        }
+        
+        .path-card p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .torn-section.dark .path-card p {
+            color: #999;
+        }
+
+        .path-card ul {
+            margin-top: 25px;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .path-card ul li {
+            padding: 12px 12px 12px 35px;
+            margin-bottom: 10px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .path-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 10px;
+            color: #ff6ec7;
+            font-weight: bold;
+        }
+        
+        /* About Section */
+        .about-box {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.9;
+        }
+        
+        .about-text p {
+            margin-bottom: 25px;
+        }
+        
+        .about-text strong {
+            color: #ff6ec7;
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .final-cta .section-title {
+            color: #fff;
+        }
+        
+        .final-cta-text {
+            max-width: 800px;
+            margin: 40px auto;
+            font-size: 1.3rem;
+            line-height: 1.9;
+        }
+
+        .final-cta-text p {
+            margin-bottom: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 60px 20px;
+            text-align: center;
+            background: #000;
+            border-top: 1px solid #333;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #ff6ec7;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            transform: scale(1.1);
+        }
+        
+        .footer-info {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-button {
+                padding: 15px 40px;
+                font-size: 1.2rem;
+            }
+            
+            .paths-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .checklist li {
+                font-size: 1rem;
+            }
+
+            .philosophy-box,
+            .path-card {
+                padding: 30px;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                Hast du Stress wegen KI<br>
+                <span class="highlight">oder Stress mit KI?</span>
+            </h1>
+            <h2>
+                Vom Verwalten des Mangels zur Gestaltung der Fülle
+            </h2>
+            
+            <div class="hero-text">
+                <p>KI sollte deine Agentur nicht schneller im Hamsterrad drehen lassen.</p>
+                
+                <p>Sie ist der Schlüssel, um das Hamsterrad zu verlassen.</p>
+                
+                <p><strong>Ich zeige dir, wie du vom abgehetzten Handwerker zum visionären Architekten wirst.</strong></p>
+            </div>
+            
+            <a href="#" class="cta-button">Lass uns reden – 15 Min Klartext</a>
+        </div>
+    </section>
+
+    <!-- Reality Check Section -->
+    <section class="torn-section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="pink-mark">Erkennst du dich wieder?</span>
+            </h2>
+            
+            <ul class="checklist">
+                <li><strong>Die "Zerstückelung" der Arbeit:</strong> Deine Teams werfen sich Aufgaben zu, warten Tage auf Feedback, und am Ende wird alles hektisch zusammengebaut. Das ist ineffizient und tötet die Kreativität.</li>
+                
+                <li><strong>Alte Prozesse mit neuen Tools:</strong> Du versuchst, KI in Prozesse zu pressen, die eigentlich aus den 2010ern stammen. Das Ergebnis? Du sparst keine Zeit, du hast nur mehr Tools zu verwalten.</li>
+                
+                <li><strong>Die trügerische Sicherheit:</strong> Du denkst: "Unsere Kunden sind ja auch noch nicht so weit." Das ist gefährlich. Während du auf deine "Grenze" vertraust, werden draußen gerade die Karten (und Preise) völlig neu gemischt.</li>
+                
+                <li><strong>Druck auf dem Kessel:</strong> Du willst dein Team schützen, aber eigentlich schützt du nur alte Gewohnheiten. Wahre Führung bedeutet heute, den Raum für echte Neugier zu öffnen.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="torn-section dark">
+        <div class="container">
+            <h2 class="section-title">
+                Das <span class="pink-mark">"Architekt vor Handwerker"</span> Prinzip
+            </h2>
+            
+            <div class="content-text">
+                <p>Die meisten Agenturen bauen Websites wie Handwerker: Sie fangen einfach an zu mauern.</p>
+                
+                <p><strong>In der KI-Ära ist das tödlich.</strong></p>
+                
+                <p>Bevor wir die erste Zeile Code schreiben oder das erste Design pixel-perfect machen, müssen wir Architekten sein.</p>
+            </div>
+
+            <div class="philosophy-box">
+                <h3>Das 1-10-50 Gesetz</h3>
+                
+                <ul>
+                    <li><strong>1 Stunde Inspiration & Strategie:</strong> Mit Tools wie Gamma, Claude und schnellem Prototyping schaffen wir in Stunden strategische Konzepte (80%-Lösungen), für die wir früher Wochen gebraucht haben.</li>
+                    
+                    <li><strong>10 Stunden Lernen & Experimentieren im Lab:</strong> Der Raum, in dem dein Team ohne Druck neue Wege testet und die Angst vor KI in Neugier verwandelt.</li>
+                    
+                    <li><strong>50% Zeitersparnis in der Execution:</strong> Wenn die "Architektur" (die Strategie & das Konzept) steht, wird die Umsetzung zum reinen Handwerk. Das schafft Leichtigkeit. Das schafft Flow.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paths Section -->
+    <section class="torn-section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="pink-mark">Zwei Wege.</span> Zwei Geschwindigkeiten. Ein Ziel.
+            </h2>
+            
+            <div class="content-text">
+                <p>Es gibt nicht den einen richtigen Weg. Aber es gibt <strong>deinen</strong> richtigen Weg – abhängig davon, wo deine Agentur steht und wie bereit dein Team ist.</p>
+                
+                <p>Rita und Leo gehen anders als Lina und Tom. Beide kommen ans Ziel. Aber mit unterschiedlichem Tempo.</p>
+            </div>
+
+            <div class="paths-grid">
+                <div class="path-card">
+                    <span class="path-badge">Weg A: Rita & Leo</span>
+                    <h3>The Agency Flow Protocol</h3>
+                    <h4>"Evolution – Wasch mich, aber mach mich nicht nass"</h4>
+                    
+                    <p>Für Agenturen, die den Stresspegel senken und Kreativität wiederherstellen wollen, ohne dass alle durchdrehen.</p>
+                    
+                    <p><strong>Das Ziel:</strong> Deine Mitarbeiter (die Barbaras, Azoras und Manus) befähigen und die Angst nehmen.</p>
+                    
+                    <ul>
+                        <li><strong>Leadership Frame:</strong> Wie du als Chef den "Raum hältst", ohne micromanagen zu müssen</li>
+                        <li><strong>Kollaboration neu gedacht:</strong> Weg von der Zerstückelung hin zu integrativen, KI-gestützten Workflows</li>
+                        <li><strong>Safety First:</strong> Wir führen KI so ein, dass sie als Hilfe empfunden wird, nicht als Bedrohung</li>
+                    </ul>
+                </div>
+
+                <div class="path-card">
+                    <span class="path-badge">Weg B: Lina & Tom</span>
+                    <h3>The Pioneer Velocity Program</h3>
+                    <h4>"Disruption – All in, jetzt oder nie"</h4>
+                    
+                    <p>Für Agenturen, die den Markt anführen und Pioniergewinne abschöpfen wollen, bevor es Standard wird.</p>
+                    
+                    <p><strong>Das Ziel:</strong> High-Speed, neue Tech-Stacks, neue Business-Modelle.</p>
+                    
+                    <ul>
+                        <li><strong>Tech-Stack Shift:</strong> Von WordPress-Baukästen zu "AI First" Workflows (Gamma → Claude → HTML/GitHub)</li>
+                        <li><strong>Rapid Prototyping:</strong> Pitchdecks und MVPs in Echtzeit erstellen</li>
+                        <li><strong>Value-Pricing:</strong> Wie du Leistungen verkaufst, die dich nur noch einen Bruchteil der Zeit kosten, aber den gleichen Wert haben</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="torn-section dark">
+        <div class="container">
+            <h2 class="section-title">
+                Warum ich? Weil ich der <span class="pink-mark">"Pain in the Ass"</span> bin, den du brauchst.
+            </h2>
+            
+            <div class="about-box">
+                <div class="about-text">
+                    <p>Ich bin ehrlich: Ich kann nerven. Ich stresse den Status Quo. Aber nicht, weil ich es böse meine, sondern weil ich sehe, was möglich ist.</p>
+                    
+                    <p>Ich sauge Wissen auf wie ein Schwamm – von Design Thinking über systemische Arbeit bis zu den neuesten GitHub-Deployments. <strong>Ich lebe im "Neuen", damit ich dich an die Hand nehmen kann.</strong></p>
+                    
+                    <p>Ich bin kein Theoretiker. Ich baue Webseiten aus Pitchdecks in Minuten, ich nutze KI für meine eigene Strategie, ich teste jedes Tool, bevor ich es empfehle.</p>
+                    
+                    <p><strong>Ich glaube daran, dass wir vor einem goldenen Zeitalter der Kreativität stehen – wenn wir uns trauen, die alten Zöpfe abzuschneiden.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="pink-mark">Warte nicht,</span> bis es Standard ist.
+            </h2>
+            
+            <div class="final-cta-text">
+                <p>In zwei Jahren sind diese Methoden normal. Dann geht es nur noch ums Überleben.</p>
+                
+                <p><strong>Heute geht es um Pioniergewinne.</strong></p>
+            </div>
+            
+            <a href="#" class="cta-button">Termin vereinbaren</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">Website</a>
+                <a href="#">Medium</a>
+                <a href="#">Bluesky</a>
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2025 Helge K.</p>
+                <p style="margin-top: 10px;">
+                    <a href="#" style="color: #666; text-decoration: none;">Impressum</a> | 
+                    <a href="#" style="color: #666; text-decoration: none;">Datenschutz</a> | 
+                    <a href="#" style="color: #666; text-decoration: none;">Kontakt</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
